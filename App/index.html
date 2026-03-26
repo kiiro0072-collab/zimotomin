@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>地元民地図 - みんなで作る旅行サイト</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Hiragino Sans', 'Meiryo', sans-serif; background: #0f1923; color: #fff; }
+
+    header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 32px; background: #111c27;
+      border-bottom: 1px solid #1e3a4a;
+    }
+    header .logo { display: flex; align-items: center; gap: 12px; }
+    header .logo img { width: 40px; height: 40px; border-radius: 8px; }
+    header .logo span { font-size: 1.1rem; font-weight: bold; color: #4fc3f7; }
+    header nav a {
+      color: #aaa; text-decoration: none; margin-left: 24px; font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+    header nav a:hover { color: #fff; }
+
+    .hero {
+      text-align: center; padding: 100px 24px 80px;
+      background: linear-gradient(180deg, #111c27 0%, #0f1923 100%);
+    }
+    .hero img { width: 100px; height: 100px; border-radius: 20px; margin-bottom: 24px; box-shadow: 0 8px 32px rgba(79,195,247,0.3); }
+    .hero h1 { font-size: 2.4rem; margin-bottom: 8px; }
+    .hero h1 span { color: #4fc3f7; }
+    .hero p { color: #aaa; font-size: 1.1rem; margin-bottom: 40px; }
+    .hero .btn {
+      display: inline-block; padding: 14px 40px; background: #4fc3f7; color: #0f1923;
+      border-radius: 32px; font-weight: bold; font-size: 1rem; text-decoration: none;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .hero .btn:hover { background: #81d4fa; transform: translateY(-2px); }
+
+    .features {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px; padding: 64px 48px; max-width: 1100px; margin: 0 auto;
+    }
+    .feature {
+      background: #111c27; border: 1px solid #1e3a4a; border-radius: 16px;
+      padding: 32px 24px; text-align: center;
+    }
+    .feature .icon { font-size: 2.4rem; margin-bottom: 16px; }
+    .feature h3 { font-size: 1.1rem; margin-bottom: 8px; color: #4fc3f7; }
+    .feature p { color: #aaa; font-size: 0.9rem; line-height: 1.6; }
+
+    .cta {
+      text-align: center; padding: 80px 24px;
+      background: linear-gradient(180deg, #0f1923 0%, #111c27 100%);
+    }
+    .cta h2 { font-size: 1.8rem; margin-bottom: 16px; }
+    .cta p { color: #aaa; margin-bottom: 32px; }
+    .cta .btn {
+      display: inline-block; padding: 14px 40px; background: #4fc3f7; color: #0f1923;
+      border-radius: 32px; font-weight: bold; font-size: 1rem; text-decoration: none;
+      transition: background 0.2s;
+    }
+    .cta .btn:hover { background: #81d4fa; }
+
+    footer {
+      text-align: center; padding: 24px; color: #555; font-size: 0.85rem;
+      border-top: 1px solid #1e3a4a;
+    }
+    footer a { color: #4fc3f7; text-decoration: none; margin: 0 8px; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <img src="./icon.webp" alt="地元民地図">
+    <span>地元民地図</span>
+  </div>
+  <nav>
+    <a href="https://x.com/X0597997082046" target="_blank">公式X</a>
+    <a href="https://www.youtube.com/@Jimoto-Chiebukuro" target="_blank">YouTube</a>
+    <a href="/app2/kiyaku.html">利用規約</a>
+    <a href="/" style="color:#4fc3f7; font-weight:bold;">アプリを開く</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <img src="./icon.webp" alt="地元民地図">
+  <h1>地元民地図<br><span>みんなで作る旅行サイト</span></h1>
+  <p>地元の人だけが知るスポットを、みんなでシェアしよう。</p>
+  <a href="/" class="btn">今すぐ使う</a>
+</section>
+
+<section class="features">
+  <div class="feature">
+    <div class="icon">📍</div>
+    <h3>スポット登録</h3>
+    <p>飲食店・観光地・穴場スポットなど、カテゴリ別に登録できます。</p>
+  </div>
+  <div class="feature">
+    <div class="icon">🗺️</div>
+    <h3>インタラクティブマップ</h3>
+    <p>地図上でスポットを確認。カテゴリや混雑度でフィルタリングも可能。</p>
+  </div>
+  <div class="feature">
+    <div class="icon">👥</div>
+    <h3>みんなで育てる</h3>
+    <p>いいね・コメント・閲覧数でスポットの人気度がわかります。</p>
+  </div>
+  <div class="feature">
+    <div class="icon">🚗</div>
+    <h3>移動手段対応</h3>
+    <p>車・公共交通機関それぞれのアクセスしやすさを確認できます。</p>
+  </div>
+</section>
+
+<section class="cta">
+  <h2>さっそく使ってみよう</h2>
+  <p>アカウント登録不要で閲覧できます。<br>投稿するには無料アカウントを作成してください。</p>
+  <a href="../index.html" class="btn">地元民地図を開く</a>
+</section>
+
+<footer>
+  &copy; 2025 地元民地図 &nbsp;|&nbsp;
+  <a href="https://x.com/X0597997082046" target="_blank">公式X</a>
+  <a href="https://www.youtube.com/@Jimoto-Chiebukuro" target="_blank">YouTube</a>
+  <a href="/app2/kiyaku.html">利用規約</a>
+</footer>
+
+</body>
+</html>
