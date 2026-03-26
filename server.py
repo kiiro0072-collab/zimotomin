@@ -105,9 +105,22 @@ def init_db():
     except sqlite3.OperationalError:
         con.execute("ALTER TABLE feedbacks ADD COLUMN score INTEGER DEFAULT 0")
     try:
-        con.execute("SELECT viewed_at FROM views LIMIT 1")
+        con.execute("SELECT id, viewed_at FROM views LIMIT 1")
     except sqlite3.OperationalError:
-        con.execute("ALTER TABLE views ADD COLUMN viewed_at TEXT DEFAULT (datetime('now','localtime'))")
+        # idカラムかviewed_atカラムがない → テーブル再作成
+        try:
+            con.execute("""CREATE TABLE IF NOT EXISTS views_new (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                point_id INTEGER NOT NULL,
+                user_id INTEGER NOT NULL,
+                viewed_at TEXT DEFAULT (datetime('now','localtime')),
+                FOREIGN KEY (point_id) REFERENCES points(id) ON DELETE CASCADE
+            )""")
+            con.execute("INSERT OR IGNORE INTO views_new (point_id, user_id) SELECT point_id, user_id FROM views")
+            con.execute("DROP TABLE views")
+            con.execute("ALTER TABLE views_new RENAME TO views")
+        except Exception:
+            pass
     con.commit()
     con.close()
 
@@ -211,9 +224,13 @@ def points_version():
     r = con.execute("SELECT COUNT(*) as cnt, MAX(id) as maxid FROM points").fetchone()
     o = con.execute("SELECT MAX(id) as maxid FROM opinions").fetchone()
     l = con.execute("SELECT COUNT(*) as cnt FROM likes").fetchone()
-    v = con.execute("SELECT MAX(id) as maxid FROM views").fetchone()
+    try:
+        v = con.execute("SELECT MAX(id) as maxid FROM views").fetchone()
+        v_val = v["maxid"]
+    except Exception:
+        v_val = 0
     con.close()
-    return {"v": f"{r['cnt']}-{r['maxid']}-{o['maxid']}-{l['cnt']}-{v['maxid']}"}
+    return {"v": f"{r['cnt']}-{r['maxid']}-{o['maxid']}-{l['cnt']}-{v_val}"}
 
 @app.get("/api/points")
 def list_points(user=Depends(get_current_user)):
